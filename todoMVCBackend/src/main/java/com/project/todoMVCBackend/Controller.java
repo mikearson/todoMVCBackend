@@ -37,7 +37,7 @@ public class Controller {
 	
 	
 	//GET ALL TODO ITEMS
-	@GetMapping("/")
+	@GetMapping("/getAll")
 	public List<TodoObject> todoList() {
 		
 		List<TodoObject> todoObject = services.getAllTodos();
@@ -45,29 +45,41 @@ public class Controller {
 		return todoObject;
 	}
 	
+	// get all active todos
+	@GetMapping("/getActive")
+	public List<TodoObject> todoActiveList() {
+		
+		return services.getActiveTodos();
+	}
+	
+	
+	// get all completed todos
+	@GetMapping("/getCompleted")
+	public List<TodoObject> todoCompletedList() {
+		
+		return services.getCompletedTodos();
+	}
+	
 	// set todo to completed
-	@GetMapping("/")
+	@PostMapping("/{id}")
 	public void setStatus(Integer id) {
 		services.setStatus(id);
 	}
-	// Completed items
-	
-	// return amount of active items
-	@GetMapping("/")
+	// return AMOUNT of active items
+	@GetMapping()
 	public int getActive() {
 		return services.getActive();
 	}
-	// Active Items
-	
 	// Delete object
-	@GetMapping("/")
+	@GetMapping("/{id}")
 	public void deleteTodoObject(Integer id) {
 		services.deleteTodoObject(id);
 	}
+	
 	// Delete  all completed Todo's
-	@GetMapping("/")
+	@GetMapping("/deleteCompleted")
 	public void deleteCompletedTodoObjects() {
-		
+		services.deleteCompletedTodoObjects();
 	}
 	
 }
