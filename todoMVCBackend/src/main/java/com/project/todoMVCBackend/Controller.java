@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,7 @@ public class Controller {
 	private Services services;
 	
 	
-	//Autowired gör att
+
 	@Autowired
 	public Controller(Services services) {
 		
@@ -62,7 +63,7 @@ public class Controller {
 	
 	// set todo to completed
 	@PostMapping("/{id}")
-	public void setStatus(Integer id) {
+	public void setStatus(@PathVariable Integer id) {
 		services.setStatus(id);
 	}
 	// return AMOUNT of active items
@@ -72,7 +73,7 @@ public class Controller {
 	}
 	// Delete object
 	@GetMapping("/{id}")
-	public void deleteTodoObject(Integer id) {
+	public void deleteTodoObject(@PathVariable Integer id) {
 		services.deleteTodoObject(id);
 	}
 	
